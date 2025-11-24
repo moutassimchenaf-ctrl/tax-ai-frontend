@@ -65,6 +65,10 @@ export function QuantumScene({ children }: QuantumSceneProps) {
               intensity={50} 
               luminanceInfluence={0.4} 
               color={new THREE.Color('black')}
+              worldDistanceThreshold={1.0}
+              worldDistanceFalloff={0.1}
+              worldProximityThreshold={1.0}
+              worldProximityFalloff={0.1}
             />
             <Bloom 
               luminanceThreshold={0.9} 
