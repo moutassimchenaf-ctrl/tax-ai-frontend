@@ -1,0 +1,60 @@
+# Page snapshot
+
+```yaml
+- dialog "Unhandled Runtime Error" [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - navigation [ref=e7]:
+          - button "previous" [disabled] [ref=e8]:
+            - img "previous" [ref=e9]
+          - button "next" [disabled] [ref=e11]:
+            - img "next" [ref=e12]
+          - generic [ref=e14]: 1 of 1 unhandled error
+          - generic [ref=e15]:
+            - text: Next.js (14.0.3) is outdated
+            - link "(learn more)" [ref=e17] [cursor=pointer]:
+              - /url: https://nextjs.org/docs/messages/version-staleness
+        - button "Close" [ref=e18] [cursor=pointer]:
+          - img [ref=e20]
+      - heading "Unhandled Runtime Error" [level=1] [ref=e23]
+      - paragraph [ref=e24]: "TypeError: Cannot read properties of undefined (reading 'S')"
+    - generic [ref=e25]:
+      - heading "Call Stack" [level=2] [ref=e26]
+      - generic [ref=e27]:
+        - heading "module.exports" [level=3] [ref=e28]
+        - generic [ref=e30]: webpack-internal:/(app-pages-browser)/node_modules/react-reconciler/cjs/react-reconciler.development.js (15916:58)
+      - generic [ref=e31]:
+        - heading "createReconciler" [level=3] [ref=e32]
+        - generic [ref=e34]: webpack-internal:/(app-pages-browser)/node_modules/@react-three/fiber/dist/events-f8cd670d.esm.js (1311:77)
+      - generic [ref=e35]:
+        - heading "eval" [level=3] [ref=e36]
+        - generic [ref=e38]: webpack-internal:/(app-pages-browser)/node_modules/@react-three/fiber/dist/events-f8cd670d.esm.js (1612:35)
+      - generic [ref=e39]:
+        - heading "(app-pages-browser)/./node_modules/@react-three/fiber/dist/events-f8cd670d.esm.js" [level=3] [ref=e40]
+        - generic [ref=e42]: file:///Users/moutassimchenaf/Desktop/Titan/core/frontend/.next/static/chunks/_app-pages-browser_src_components_hero_HeroCanvas_tsx.js (95:1)
+      - generic [ref=e43]:
+        - heading "options.factory" [level=3] [ref=e44]
+        - generic [ref=e46]: file:///Users/moutassimchenaf/Desktop/Titan/core/frontend/.next/static/chunks/webpack.js (716:31)
+      - generic [ref=e47]:
+        - heading "__webpack_require__" [level=3] [ref=e48]
+        - generic [ref=e50]: file:///Users/moutassimchenaf/Desktop/Titan/core/frontend/.next/static/chunks/webpack.js (37:33)
+      - generic [ref=e51]:
+        - heading "fn" [level=3] [ref=e52]
+        - generic [ref=e54]: file:///Users/moutassimchenaf/Desktop/Titan/core/frontend/.next/static/chunks/webpack.js (371:21)
+      - generic [ref=e55]:
+        - heading "eval" [level=3] [ref=e56]
+        - generic [ref=e58]: webpack-internal:/(app-pages-browser)/src/components/hero/HeroCanvas.tsx (8:76)
+      - generic [ref=e59]:
+        - heading "(app-pages-browser)/./src/components/hero/HeroCanvas.tsx" [level=3] [ref=e60]
+        - generic [ref=e62]: file:///Users/moutassimchenaf/Desktop/Titan/core/frontend/.next/static/chunks/_app-pages-browser_src_components_hero_HeroCanvas_tsx.js (117:1)
+      - generic [ref=e63]:
+        - heading "options.factory" [level=3] [ref=e64]
+        - generic [ref=e66]: file:///Users/moutassimchenaf/Desktop/Titan/core/frontend/.next/static/chunks/webpack.js (716:31)
+      - generic [ref=e67]:
+        - heading "__webpack_require__" [level=3] [ref=e68]
+        - generic [ref=e70]: file:///Users/moutassimchenaf/Desktop/Titan/core/frontend/.next/static/chunks/webpack.js (37:33)
+      - generic [ref=e71]:
+        - heading "fn" [level=3] [ref=e72]
+        - generic [ref=e74]: file:///Users/moutassimchenaf/Desktop/Titan/core/frontend/.next/static/chunks/webpack.js (371:21)
+```

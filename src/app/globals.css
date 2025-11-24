@@ -1,0 +1,292 @@
+/* Tailwind CSS Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Diamond League Brand Colors */
+    --color-primary-teal: #06708A;
+    --color-primary-blue-teal: #0898BB;
+    --color-primary-cyan: #0B9EBB;
+    --color-primary-light-cyan: #0DA7C7;
+    --color-primary-dark-teal: #055A73;
+    --color-primary-darker-teal: #044A5F;
+
+    /* Premium Accents */
+    --color-gold: #D4AF37;
+    --color-gold-light: #F4D03F;
+    --color-deep-blue: #0A192F;
+    --color-glass-border: rgba(255, 255, 255, 0.1);
+
+    /* Typography */
+    --font-inter: 'Inter', system-ui, sans-serif;
+    --font-arial: 'Arial', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Font Weights */
+    --font-weight-thin: 100;
+    --font-weight-extralight: 200;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+
+    /* Spacing */
+    --spacing-0: 0;
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2rem;
+    --spacing-10: 2.5rem;
+    --spacing-12: 3rem;
+    --spacing-16: 4rem;
+    --spacing-20: 5rem;
+    --spacing-24: 6rem;
+    --spacing-32: 8rem;
+    --spacing-40: 10rem;
+    --spacing-48: 12rem;
+    --spacing-56: 14rem;
+    --spacing-64: 16rem;
+
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-white text-navy-900 antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-weight: var(--font-weight-light);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+
+  /* Selection styles */
+  ::selection {
+    @apply bg-primary-teal/20 text-primary-teal;
+  }
+}
+
+@layer components {
+
+  /* Container utilities */
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+
+  /* Button styles */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-teal text-white hover:bg-primary-dark-teal focus:ring-primary-teal;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500;
+  }
+
+  .btn-outline {
+    @apply btn border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-primary-teal;
+  }
+
+  .btn-ghost {
+    @apply btn text-gray-700 hover:bg-gray-100 focus:ring-primary-teal;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-md hover:border-gray-300 transition-all duration-200;
+  }
+
+  /* Form styles */
+  .form-input {
+    @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-teal focus:ring-primary-teal;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+
+  /* Navigation styles */
+  .nav-link {
+    @apply text-gray-600 hover:text-primary-teal hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium transition-colors;
+  }
+
+  .nav-link-active {
+    @apply nav-link text-primary-teal bg-primary-teal/10;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  /* Loading states */
+  .loading {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+
+  .loading-text {
+    @apply loading h-4 w-3/4;
+  }
+
+  /* Responsive utilities */
+  @screen sm {
+    .container {
+      @apply px-6;
+    }
+  }
+
+  @screen lg {
+    .container {
+      @apply px-8;
+    }
+  }
+}
+
+@layer utilities {
+
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, #0A1628 1px, transparent 1px),
+                      linear-gradient(to bottom, #0A1628 1px, transparent 1px);
+  }
+
+  /* Background utilities */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary-teal) 0%, var(--color-primary-blue-teal) 100%);
+  }
+
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, var(--color-primary-cyan) 0%, var(--color-primary-light-cyan) 100%);
+  }
+
+  .bg-gradient-diamond {
+    background: linear-gradient(135deg, var(--color-deep-blue) 0%, var(--color-primary-dark-teal) 100%);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(to right, var(--color-gold), var(--color-gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glass morphism */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  /* Focus utilities */
+  .focus\:ring-primary {
+    @apply focus:ring-2 focus:ring-primary-teal focus:ring-offset-2;
+  }
+
+  /* Hover utilities */
+  .hover\:lift {
+    @apply hover:-translate-y-1 hover:shadow-lg transition-all duration-200;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    @apply border-2 border-white;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
