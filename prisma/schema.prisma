@@ -1,0 +1,145 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  workspaces     WorkspaceMember[]
+  assignedIssues Issue[]           @relation("AssignedIssues")
+  createdIssues  Issue[]           @relation("CreatedIssues")
+  comments       Comment[]
+}
+
+model Workspace {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  logoUrl   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members  WorkspaceMember[]
+  teams    Team[]
+  projects Project[]
+  labels   Label[]
+  statuses Status[]
+}
+
+model WorkspaceMember {
+  id          String   @id @default(uuid())
+  userId      String
+  workspaceId String
+  role        String   @default("MEMBER") // OWNER, ADMIN, MEMBER, GUEST
+  joinedAt    DateTime @default(now())
+
+  user      User      @relation(fields: [userId], references: [id])
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+
+  @@unique([userId, workspaceId])
+}
+
+model Team {
+  id          String   @id @default(uuid())
+  name        String
+  identifier  String // e.g., "ENG", "DES"
+  workspaceId String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  projects  Project[]
+  issues    Issue[]
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  identifier  String // e.g., "TITAN"
+  description String?
+  workspaceId String
+  teamId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  team      Team?     @relation(fields: [teamId], references: [id])
+  issues    Issue[]
+}
+
+model Status {
+  id          String @id @default(uuid())
+  name        String
+  color       String // Hex code
+  position    Int // For ordering
+  category    String // TODO, IN_PROGRESS, DONE, CANCELED
+  workspaceId String
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  issues    Issue[]
+}
+
+model Label {
+  id          String @id @default(uuid())
+  name        String
+  color       String
+  workspaceId String
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  issues    Issue[]
+}
+
+model Issue {
+  id          String    @id @default(uuid())
+  identifier  String // e.g., "TIT-123"
+  title       String
+  description String? // Markdown
+  priority    String // LOW, MEDIUM, HIGH, URGENT
+  dueDate     DateTime?
+
+  statusId   String
+  projectId  String?
+  teamId     String?
+  creatorId  String
+  assigneeId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  status   Status   @relation(fields: [statusId], references: [id])
+  project  Project? @relation(fields: [projectId], references: [id])
+  team     Team?    @relation(fields: [teamId], references: [id])
+  creator  User     @relation("CreatedIssues", fields: [creatorId], references: [id])
+  assignee User?    @relation("AssignedIssues", fields: [assigneeId], references: [id])
+
+  labels   Label[]
+  comments Comment[]
+  parent   Issue?    @relation("SubIssues", fields: [parentId], references: [id])
+  parentId String?
+  children Issue[]   @relation("SubIssues")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String // Markdown
+  issueId   String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  issue Issue @relation(fields: [issueId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+}

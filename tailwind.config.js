@@ -11,6 +11,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Huly Replica Palette
+        huly: {
+          bg: '#1c1c1c',
+          sidebar: '#151516',
+          border: '#2e2e2e',
+          text: {
+            primary: '#e1e1e3',
+            secondary: '#a1a1aa',
+          },
+          accent: '#2e63ea',
+        },
         // Quantum Core Palette
         white: '#FFFFFF',
         navy: {

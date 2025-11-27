@@ -1,6 +1,8 @@
 import { GlassSidebar } from "@/components/layout/GlassSidebar";
 import { GlassHeader } from "@/components/layout/GlassHeader";
 import { AuthGuard } from "@/components/auth/AuthGuard";
+import { CommandPalette } from "@/components/ui/CommandPalette";
+import { KeyboardShortcuts } from "@/components/ui/KeyboardShortcuts"; // Added import for KeyboardShortcuts
 
 const DashboardLayout = ({
     children
@@ -9,6 +11,8 @@ const DashboardLayout = ({
 }) => {
     return (
         <AuthGuard>
+            <CommandPalette />
+            <KeyboardShortcuts /> {/* Added KeyboardShortcuts component */}
             <div className="h-full relative bg-white">
                 {/* Global Grid Background for Dashboard Area */}
                 <div className="absolute inset-0 z-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />

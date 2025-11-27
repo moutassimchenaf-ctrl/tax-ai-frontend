@@ -1,135 +1,85 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import { Command } from 'cmdk';
-import { useRouter } from 'next/navigation';
-import {
-    Calculator,
-    Calendar,
-    CreditCard,
-    Settings,
-    User,
-    Search,
-    FileText,
-    LayoutDashboard,
-    Bot,
-    Terminal
-} from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import React, { useEffect, useState } from 'react'
+import { Command } from 'cmdk'
+import { Search, Plus, User, FileText, Settings, Layout } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export function CommandPalette() {
-    const [open, setOpen] = React.useState(false);
-    const router = useRouter();
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
 
-    React.useEffect(() => {
-        const down = (e: KeyboardEvent) => {
-            if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-                e.preventDefault();
-                setOpen((open) => !open);
-            }
-        };
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
 
-        document.addEventListener('keydown', down);
-        return () => document.removeEventListener('keydown', down);
-    }, []);
+    document.addEventListener('keydown', down)
+    return () => document.removeEventListener('keydown', down)
+  }, [])
 
-    const runCommand = React.useCallback((command: () => void) => {
-        setOpen(false);
-        command();
-    }, []);
+  const runCommand = (command: () => void) => {
+    setOpen(false)
+    command()
+  }
 
-    return (
-        <AnimatePresence>
-            {open && (
-                <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[20vh]">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm"
-                        onClick={() => setOpen(false)}
-                        {...({} as any)}
-                    />
+  if (!open) return null
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                        className="relative w-full max-w-2xl overflow-hidden rounded-xl border border-white/10 bg-[#0A0A0A]/90 shadow-2xl backdrop-blur-xl"
-                    >
-                        <Command className="w-full">
-                            <div className="flex items-center border-b border-white/10 px-4" cmdk-input-wrapper="">
-                                <Search className="mr-2 h-5 w-5 shrink-0 text-white/50" />
-                                <Command.Input
-                                    placeholder="Type a command or search..."
-                                    className="flex h-14 w-full bg-transparent py-3 text-sm text-white outline-none placeholder:text-white/30 disabled:cursor-not-allowed disabled:opacity-50"
-                                />
-                            </div>
+  return (
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="w-full max-w-xl overflow-hidden rounded-xl border border-huly-border bg-huly-sidebar shadow-2xl animate-in zoom-in-95 duration-200">
+        <Command className="w-full">
+          <div className="flex items-center border-b border-huly-border px-3">
+            <Search className="mr-2 h-4 w-4 shrink-0 text-huly-text-secondary" />
+            <Command.Input 
+              placeholder="Type a command or search..." 
+              className="flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-huly-text-secondary text-huly-text-primary"
+            />
+          </div>
+          
+          <Command.List className="max-h-[300px] overflow-y-auto p-2">
+            <Command.Empty className="py-6 text-center text-sm text-huly-text-secondary">
+              No results found.
+            </Command.Empty>
 
-                            <Command.List className="max-h-[60vh] overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                                <Command.Empty className="py-6 text-center text-sm text-white/50">
-                                    No results found.
-                                </Command.Empty>
+            <Command.Group heading="Navigation" className="text-xs font-medium text-huly-text-secondary px-2 py-1.5">
+              <CommandItem icon={Layout} onSelect={() => runCommand(() => router.push('/dashboard'))}>
+                Dashboard
+              </CommandItem>
+              <CommandItem icon={FileText} onSelect={() => runCommand(() => router.push('/dashboard/issues'))}>
+                Issues
+              </CommandItem>
+              <CommandItem icon={Settings} onSelect={() => runCommand(() => router.push('/dashboard/settings'))}>
+                Settings
+              </CommandItem>
+            </Command.Group>
 
-                                <Command.Group heading="Navigation" className="text-xs font-medium text-white/50 px-2 py-1.5">
-                                    <Command.Item
-                                        onSelect={() => runCommand(() => router.push('/dashboard'))}
-                                        className="relative flex cursor-default select-none items-center rounded-lg px-2 py-2 text-sm text-white outline-none aria-selected:bg-white/10 aria-selected:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-                                    >
-                                        <LayoutDashboard className="mr-2 h-4 w-4" />
-                                        <span>Dashboard</span>
-                                        <span className="ml-auto text-xs tracking-widest text-white/30">⌘D</span>
-                                    </Command.Item>
+            <Command.Group heading="Actions" className="text-xs font-medium text-huly-text-secondary px-2 py-1.5 mt-2">
+              <CommandItem icon={Plus} onSelect={() => runCommand(() => console.log('New Issue'))}>
+                Create New Issue
+              </CommandItem>
+              <CommandItem icon={User} onSelect={() => runCommand(() => console.log('Invite Team'))}>
+                Invite Team Member
+              </CommandItem>
+            </Command.Group>
+          </Command.List>
+        </Command>
+      </div>
+    </div>
+  )
+}
 
-                                    <Command.Item
-                                        onSelect={() => runCommand(() => router.push('/control-center'))}
-                                        className="relative flex cursor-default select-none items-center rounded-lg px-2 py-2 text-sm text-white outline-none aria-selected:bg-white/10 aria-selected:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-                                    >
-                                        <Terminal className="mr-2 h-4 w-4" />
-                                        <span>Control Center</span>
-                                        <span className="ml-auto text-xs tracking-widest text-white/30">⌘T</span>
-                                    </Command.Item>
-                                </Command.Group>
-
-                                <Command.Group heading="Tools" className="text-xs font-medium text-white/50 px-2 py-1.5 mt-2">
-                                    <Command.Item
-                                        onSelect={() => runCommand(() => router.push('/dashboard/vat-calculator'))}
-                                        className="relative flex cursor-default select-none items-center rounded-lg px-2 py-2 text-sm text-white outline-none aria-selected:bg-white/10 aria-selected:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-                                    >
-                                        <Calculator className="mr-2 h-4 w-4" />
-                                        <span>VAT Calculator</span>
-                                    </Command.Item>
-
-                                    <Command.Item
-                                        onSelect={() => runCommand(() => router.push('/dashboard/compliance'))}
-                                        className="relative flex cursor-default select-none items-center rounded-lg px-2 py-2 text-sm text-white outline-none aria-selected:bg-white/10 aria-selected:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-                                    >
-                                        <FileText className="mr-2 h-4 w-4" />
-                                        <span>Compliance Check</span>
-                                    </Command.Item>
-                                </Command.Group>
-
-                                <Command.Group heading="System" className="text-xs font-medium text-white/50 px-2 py-1.5 mt-2">
-                                    <Command.Item
-                                        onSelect={() => runCommand(() => router.push('/settings'))}
-                                        className="relative flex cursor-default select-none items-center rounded-lg px-2 py-2 text-sm text-white outline-none aria-selected:bg-white/10 aria-selected:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-                                    >
-                                        <Settings className="mr-2 h-4 w-4" />
-                                        <span>Settings</span>
-                                        <span className="ml-auto text-xs tracking-widest text-white/30">⌘S</span>
-                                    </Command.Item>
-                                </Command.Group>
-                            </Command.List>
-
-                            <div className="border-t border-white/10 px-4 py-2 text-xs text-white/30 flex justify-between">
-                                <span>Use arrow keys to navigate</span>
-                                <span>ESC to close</span>
-                            </div>
-                        </Command>
-                    </motion.div>
-                </div>
-            )}
-        </AnimatePresence>
-    );
+function CommandItem({ children, icon: Icon, onSelect }: { children: React.ReactNode, icon: any, onSelect: () => void }) {
+  return (
+    <Command.Item 
+      onSelect={onSelect}
+      className="flex cursor-pointer select-none items-center rounded-md px-2 py-2 text-sm text-huly-text-primary aria-selected:bg-huly-accent aria-selected:text-white transition-colors"
+    >
+      <Icon className="mr-2 h-4 w-4" />
+      {children}
+    </Command.Item>
+  )
 }
