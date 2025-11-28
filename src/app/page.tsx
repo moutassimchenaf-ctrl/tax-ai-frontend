@@ -6,6 +6,7 @@ import { ProblemStatement } from '@/components/landing/ProblemStatement'
 import { FeatureShowcase } from '@/components/landing/FeatureShowcase'
 import { BentoGrid } from '@/components/landing/BentoGrid'
 import { FinalCTA } from '@/components/landing/FinalCTA'
+import { Footer } from '@/components/layout/Footer'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
@@ -20,6 +21,7 @@ export default function LandingPage() {
         <FeatureShowcase />
         <BentoGrid />
         <FinalCTA />
+        <Footer />
       </StickyScrollWrapper>
     </main>
   )

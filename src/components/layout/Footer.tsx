@@ -1,131 +1,69 @@
+import Link from 'next/link'
+import Image from 'next/image'
+import { Github, Twitter, Linkedin } from 'lucide-react'
+
 export function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Company</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Press
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Partners
-                </a>
-              </li>
-            </ul>
+    <footer className="bg-[#0A1628] border-t border-white/5 relative z-20">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+          {/* Brand */}
+          <div className="col-span-2">
+            <div className="relative h-8 w-24 mb-6">
+              <Image 
+                src="/taxai-logo-white.png" 
+                alt="Tax.ai" 
+                fill 
+                className="object-contain object-left"
+              />
+            </div>
+            <p className="text-white/40 text-sm max-w-xs leading-relaxed">
+              The autonomous engine for modern tax intelligence. Orchestrating agents, audits, and compliance in real-time.
+            </p>
           </div>
 
           {/* Product */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Product</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Security
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Integrations
-                </a>
-              </li>
+            <h3 className="text-white font-semibold mb-4">Product</h3>
+            <ul className="space-y-3 text-sm text-white/40">
+              <li><Link href="#" className="hover:text-white transition-colors">Features</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Integrations</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Pricing</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Changelog</Link></li>
             </ul>
           </div>
 
           {/* Resources */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Resources</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Guides
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  API Reference
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Support
-                </a>
-              </li>
+            <h3 className="text-white font-semibold mb-4">Resources</h3>
+            <ul className="space-y-3 text-sm text-white/40">
+              <li><Link href="#" className="hover:text-white transition-colors">Documentation</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">API Reference</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Community</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Help Center</Link></li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Company */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Legal</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Privacy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Terms
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Cookies
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-primary-teal transition-colors">
-                  Compliance
-                </a>
-              </li>
+            <h3 className="text-white font-semibold mb-4">Company</h3>
+            <ul className="space-y-3 text-sm text-white/40">
+              <li><Link href="#" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Blog</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Careers</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Legal</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-gray-600">
-              © 2025 Tax.ai. All rights reserved.
-            </div>
-            <div className="mt-4 md:mt-0 flex items-center space-x-6">
-              <span className="text-sm text-gray-600">
-                Built with AI for professionals
-              </span>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span className="text-sm text-gray-600">All systems operational</span>
-              </div>
-            </div>
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-white/20 text-sm">
+            © 2025 Tax.ai Inc. All rights reserved.
+          </div>
+          <div className="flex items-center gap-6">
+            <Link href="#" className="text-white/40 hover:text-white transition-colors"><Github size={20} /></Link>
+            <Link href="#" className="text-white/40 hover:text-white transition-colors"><Twitter size={20} /></Link>
+            <Link href="#" className="text-white/40 hover:text-white transition-colors"><Linkedin size={20} /></Link>
           </div>
         </div>
       </div>

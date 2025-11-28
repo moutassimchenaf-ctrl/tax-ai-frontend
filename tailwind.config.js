@@ -12,15 +12,16 @@ module.exports = {
     extend: {
       colors: {
         // Huly Replica Palette
+        // Huly Replica Palette (Rebranded to Tax.ai Navy)
         huly: {
-          bg: '#1c1c1c',
-          sidebar: '#151516',
-          border: '#2e2e2e',
+          bg: '#0A1628', // Deep Navy
+          sidebar: '#0F1C2E', // Lighter Navy for sidebar
+          border: '#1E293B', // Slate border
           text: {
-            primary: '#e1e1e3',
-            secondary: '#a1a1aa',
+            primary: '#F8FAFC', // Slate-50
+            secondary: '#94A3B8', // Slate-400
           },
-          accent: '#2e63ea',
+          accent: '#0898BB', // Tax.ai Teal
         },
         // Quantum Core Palette
         white: '#FFFFFF',
