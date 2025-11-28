@@ -9,11 +9,10 @@ export function LandingNavbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#1c1c1c]/80 backdrop-blur-md border-b border-white/5">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <div className="h-8 w-8 bg-white rounded-lg flex items-center justify-center">
-           {/* Placeholder for Huly Logo Icon */}
-           <div className="h-4 w-4 bg-black rounded-sm" />
+        <div className="h-8 w-8 bg-[#0898BB] rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(8,152,187,0.5)]">
+           <div className="h-4 w-4 bg-white rounded-sm" />
         </div>
-        <span className="text-xl font-bold text-white tracking-tight">Huly</span>
+        <span className="text-xl font-bold text-white tracking-tight">Tax.ai</span>
       </div>
 
       {/* Links */}

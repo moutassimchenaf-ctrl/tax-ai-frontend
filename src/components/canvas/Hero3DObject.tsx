@@ -74,17 +74,17 @@ export function Hero3DObject(props: any) {
           backside
           samples={16}
           resolution={512}
-          transmission={0.95}
-          roughness={0.2}
+          transmission={0.99}
+          roughness={0.1}
           clearcoat={1}
           clearcoatRoughness={0.1}
-          thickness={1.5}
+          thickness={2}
           ior={1.5}
-          chromaticAberration={0.06}
-          anisotropy={0.1}
-          distortion={0.2}
-          distortionScale={0.3}
-          temporalDistortion={0.5}
+          chromaticAberration={0.1}
+          anisotropy={0.3}
+          distortion={0.4}
+          distortionScale={0.4}
+          temporalDistortion={0.2}
           color="#ffffff"
         />
       </RoundedBox>
