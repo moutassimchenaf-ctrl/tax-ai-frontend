@@ -1,5 +1,5 @@
 import { useRef, useLayoutEffect } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { MeshTransmissionMaterial, RoundedBox, Float } from '@react-three/drei'
 import * as THREE from 'three'
 import { gsap } from 'gsap'
@@ -10,6 +10,11 @@ gsap.registerPlugin(ScrollTrigger)
 export function Hero3DObject(props: any) {
   const meshRef = useRef<THREE.Mesh>(null)
   const materialRef = useRef<any>(null)
+  const { viewport } = useThree()
+  
+  // Responsive scale: smaller on mobile
+  const isMobile = viewport.width < 5
+  const scale = isMobile ? 0.8 : 1.2
 
   useLayoutEffect(() => {
     if (!meshRef.current) return
@@ -68,7 +73,7 @@ export function Hero3DObject(props: any) {
 
   return (
     <Float speed={2} rotationIntensity={0.2} floatIntensity={0.2}>
-      <RoundedBox ref={meshRef} args={[1.5, 1.5, 1.5]} radius={0.2} smoothness={4} {...props}>
+      <RoundedBox ref={meshRef} args={[1.5, 1.5, 1.5]} scale={scale} radius={0.2} smoothness={4} {...props}>
         <MeshTransmissionMaterial
           ref={materialRef}
           backside
