@@ -3,16 +3,22 @@
 import React from 'react'
 import Link from 'next/link'
 import { ChevronDown, Github } from 'lucide-react'
+import Image from 'next/image'
 
 export function LandingNavbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#1c1c1c]/80 backdrop-blur-md border-b border-white/5">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <div className="h-8 w-8 bg-[#0898BB] rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(8,152,187,0.5)]">
-           <div className="h-4 w-4 bg-white rounded-sm" />
+        <div className="relative h-8 w-auto aspect-[3/1]">
+          <Image 
+            src="/taxai-logo-white.png" 
+            alt="Tax.ai Logo" 
+            fill 
+            className="object-contain"
+            priority
+          />
         </div>
-        <span className="text-xl font-bold text-white tracking-tight">Tax.ai</span>
       </div>
 
       {/* Links */}
