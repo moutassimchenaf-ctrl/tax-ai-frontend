@@ -64,11 +64,26 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
         .eq('id', userId)
         .single()
 
-      if (error) throw error
-      
-      setUser(data)
+      if (error) {
+        console.warn('Error fetching user profile (using session fallback):', error.message)
+        // Fallback: Create a temporary user object from the session
+        // This prevents the app from breaking if the 'users' table is missing or empty
+        const { data: { session } } = await supabase.auth.getSession()
+        if (session?.user) {
+             setUser({
+                 id: session.user.id,
+                 email: session.user.email!,
+                 full_name: session.user.user_metadata.full_name || session.user.email?.split('@')[0] || 'User',
+                 role: 'user',
+                 created_at: new Date().toISOString(),
+                 updated_at: new Date().toISOString()
+             })
+        }
+      } else {
+        setUser(data)
+      }
     } catch (error) {
-      console.error('Error fetching user profile:', error)
+      console.error('Unexpected error fetching profile:', error)
     } finally {
       setLoading(false)
     }
