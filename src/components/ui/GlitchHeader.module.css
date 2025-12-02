@@ -1,0 +1,47 @@
+/* -------------------------------
+   BRAND VARIABLES
+-------------------------------- */
+.container {
+  --brand-font-family: 'Inter', 'Inter Thin', Arial, sans-serif;
+  --brand-text-accent: #0898BB; /* Tax.ai Blue/Teal */
+  --brand-text-base: #FFFFFF;
+  --glitch-speed: 650ms;
+}
+
+/* -------------------------------
+   CONTAINER
+-------------------------------- */
+.navBrand {
+  font-family: var(--brand-font-family);
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  position: relative;
+  display: inline-block;
+  color: var(--brand-text-base);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* -------------------------------
+   GLITCH REVEAL EFFECT
+-------------------------------- */
+.navBrand::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;                        /* starts hidden */
+  overflow: hidden;
+  white-space: nowrap;
+
+  color: var(--brand-text-accent); /* Tax.ai Blue */
+  mix-blend-mode: difference;
+
+  border-right: 2px solid var(--brand-text-accent);
+  animation: none;
+  transition: width var(--glitch-speed) ease;
+}
+
+.navBrand:hover::before {
+  width: 100%;                     /* reveal animation */
+}

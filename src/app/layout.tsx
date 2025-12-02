@@ -57,6 +57,7 @@ export default function RootLayout({
       <body className="font-inter bg-[#1c1c1c] text-white antialiased selection:bg-blue-500 selection:text-white">
         <WebVitals />
         <Providers>
+          <CommandPalette />
           <AgentStateProvider>
             <SmoothScroll>
               {children}
