@@ -18,7 +18,7 @@ interface Issue {
   title: string;
   status: { id: string; name: string; color: string; category: string };
   priority: string;
-  assignee?: { name: string; avatarUrl?: string };
+  assignee?: { name: string | null; avatarUrl?: string | null } | null;
 }
 
 interface Column {
@@ -72,7 +72,7 @@ const IssueCard = ({ issue, onClick }: { issue: Issue; onClick: () => void }) =>
         </div>
         {issue.assignee && (
           <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#0898BB] to-[#06708a] flex items-center justify-center text-[8px] font-bold text-white">
-            {issue.assignee.name.charAt(0)}
+            {issue.assignee.name?.charAt(0) || '?'}
           </div>
         )}
       </div>

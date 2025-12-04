@@ -15,8 +15,8 @@ interface Issue {
   title: string;
   status: { name: string; color: string; category: string };
   priority: string;
-  assignee?: { name: string; avatarUrl?: string };
-  dueDate?: Date;
+  assignee?: { name: string | null; avatarUrl?: string | null } | null;
+  dueDate?: Date | null;
 }
 
 interface IssueListProps {
@@ -91,9 +91,9 @@ export const IssueList: React.FC<IssueListProps> = ({ issues, onIssueClick }) =>
               {issue.assignee ? (
                 <>
                   <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#0898BB] to-[#06708a] flex items-center justify-center text-[10px] font-bold text-white">
-                    {issue.assignee.name.charAt(0)}
+                    {issue.assignee.name?.charAt(0) || '?'}
                   </div>
-                  <span className="text-xs text-white/60 truncate">{issue.assignee.name}</span>
+                  <span className="text-xs text-white/60 truncate">{issue.assignee.name || 'Unknown'}</span>
                 </>
               ) : (
                 <span className="text-xs text-white/30 italic">Unassigned</span>

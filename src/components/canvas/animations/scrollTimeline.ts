@@ -22,7 +22,7 @@ export class ScrollTimeline {
         this.morphTargets = this.generateMorphTargets();
         
         // Current interpolated geometry
-        this.currentGeometry = new Float32Array(this.morphTargets[0]);
+        this.currentGeometry = new Float32Array(this.morphTargets[0]!);
         
         this.init();
     }
@@ -101,8 +101,8 @@ export class ScrollTimeline {
         const localProgress = sectionProgress - fromIndex;
         
         // Interpolate between morph targets
-        const from = this.morphTargets[fromIndex];
-        const to = this.morphTargets[toIndex];
+        const from = this.morphTargets[fromIndex]!;
+        const to = this.morphTargets[toIndex]!;
         
         // Easing function (inOutQuad)
         const eased = localProgress < 0.5
@@ -113,7 +113,7 @@ export class ScrollTimeline {
         const len = Math.min(from.length, to.length, this.currentGeometry.length);
 
         for (let i = 0; i < len; i++) {
-            this.currentGeometry[i] = from[i] + (to[i] - from[i]) * eased;
+            this.currentGeometry[i] = from[i]! + (to[i]! - from[i]!) * eased;
         }
         
         this.sceneManager.updateGeometry(this.currentGeometry);
@@ -138,8 +138,8 @@ export class ScrollTimeline {
         const toColorIdx = Math.min(fromColorIdx + 1, colors.length - 1);
         const colorProgress = colorIndex - fromColorIdx;
         
-        const fromColor = colors[fromColorIdx];
-        const toColor = colors[toColorIdx];
+        const fromColor = colors[fromColorIdx]!;
+        const toColor = colors[toColorIdx]!;
         
         const currentColor = {
             r: fromColor.r + (toColor.r - fromColor.r) * colorProgress,

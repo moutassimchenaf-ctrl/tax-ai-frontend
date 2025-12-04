@@ -105,7 +105,7 @@ export class SceneManager {
         
         // Update positions
         points.geometry.setAttribute('position', new THREE.BufferAttribute(newVertices, 3));
-        points.geometry.attributes.position.needsUpdate = true;
+        points.geometry.attributes.position!.needsUpdate = true;
         
         // Update wireframe
         // For wireframe, we need to regenerate it because the topology might change if we were changing faces,

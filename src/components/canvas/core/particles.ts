@@ -27,11 +27,11 @@ export class ParticleGeometry {
         
         // Normalize and scale
         baseVertices.forEach(v => {
-            const length = Math.sqrt(v[0]**2 + v[1]**2 + v[2]**2);
+            const length = Math.sqrt(v[0]!**2 + v[1]!**2 + v[2]!**2);
             vertices.push(
-                v[0] / length * radius,
-                v[1] / length * radius,
-                v[2] / length * radius
+                v[0]! / length * radius,
+                v[1]! / length * radius,
+                v[2]! / length * radius
             );
         });
         
@@ -50,7 +50,7 @@ export class ParticleGeometry {
             const midCache: { [key: string]: number } = {};
             
             faces.forEach(face => {
-                const [a, b, c] = face;
+                const [a, b, c] = face as [number, number, number];
                 
                 // Get midpoints (with caching to avoid duplicates)
                 const getMid = (v1: number, v2: number) => {
@@ -58,9 +58,9 @@ export class ParticleGeometry {
                     if (midCache[key]) return midCache[key];
                     
                     const idx = vertices.length / 3;
-                    const x = (vertices[v1*3] + vertices[v2*3]) / 2;
-                    const y = (vertices[v1*3+1] + vertices[v2*3+1]) / 2;
-                    const z = (vertices[v1*3+2] + vertices[v2*3+2]) / 2;
+                    const x = (vertices[v1*3]! + vertices[v2*3]!) / 2;
+                    const y = (vertices[v1*3+1]! + vertices[v2*3+1]!) / 2;
+                    const z = (vertices[v1*3+2]! + vertices[v2*3+2]!) / 2;
                     
                     // Normalize to sphere surface
                     const len = Math.sqrt(x**2 + y**2 + z**2);
